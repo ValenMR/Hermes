@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  tomcat:
+    image: tomcat
+    # image: docker.io/bitnami/tomcat:9.0
+    ports:
+      - 8080:8080
+    volumes:
+      # - 'tomcat_data:/bitnami/tomcat'
+      - ../index.html:/usr/local/tomcat/webapps/ROOT/index.html
+    # environment:
+    #   - TOMCAT_PASSWORD=1bZqpZ05
+
+# volumes:
+#   tomcat_data:
+#     driver: local
