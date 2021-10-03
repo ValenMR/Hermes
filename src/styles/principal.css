@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Noto+Sans+Display:ital,wght@1,300&display=swap');
+
 .wrapper {
     display: flex;
     width: 100%;
@@ -17,11 +20,17 @@
 
 .sidebar-header {
     margin: 30px 10px 100px 10px;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 .list-unstyled a {
     color: rgb(192, 189, 189);
     text-decoration: none;
+}
+
+.link {
+    font-size: 20px;
+    font-family: 'Noto Sans Display', sans-serif;
 }
 
 .list-unstyled a:hover {
