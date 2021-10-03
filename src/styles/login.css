@@ -1,0 +1,29 @@
+input {
+    height: 2.8em !important;
+}
+
+.login {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-image: url(../sources/login.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.blurring {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 0;
+    background-color: rgba(0, 10, 29, 0.7);
+}
+
+.login-card {
+    margin-top: 15%;
+    color: #ffff;
+}
+
+.group-input {
+    margin-bottom: 25px;
+}
