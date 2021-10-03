@@ -38,11 +38,20 @@
                         </div>
 
                     </div>
-                    <a href="#" class="btn btn-primary">Log in</a>
+                    <button onclick="login()" class="btn btn-primary">Log in</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+    <script>
+        function login() {
+        let body = document.getElementById("body");
+        console.log(body);
+        console.dir(document.lastElementChild.lastElementChild.lastElementChild.lastElementChild);
+    }
+
+    </script>
 
 </html>
