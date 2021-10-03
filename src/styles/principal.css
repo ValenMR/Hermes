@@ -1,0 +1,55 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.menu {
+    width: 218px;
+    position: flex;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    color: #ffff;
+    /* transition: all 0.3s; */
+}
+
+.sidebar-header {
+    margin: 30px 10px 100px 10px;
+}
+
+.list-unstyled a {
+    color: rgb(192, 189, 189);
+    text-decoration: none;
+}
+
+.list-unstyled a:hover {
+    color: #ffff;
+}
+
+.components {
+    margin-left: 10px;
+}
+
+.components li{
+    margin-bottom: 25px;
+}
+
+.sidebar-icons {
+    margin-right: 4px;
+}
+
+.footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 218px;
+    padding: 10px;
+    background-color: rgb(66, 66, 66);
+}
+
+.footer p {
+    margin: 2px;
+    font-size: 14px;
+}

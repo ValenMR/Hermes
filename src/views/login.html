@@ -49,7 +49,7 @@
     function login() {
         let topDocument = window.top.document;
         let body = topDocument.getElementById("body");
-        console.log(body);
+        body.innerHTML = '<object type="text/html" class="view" data="./views/principal.html" ></object>';
     }
 </script>
 
