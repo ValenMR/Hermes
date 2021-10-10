@@ -23,7 +23,6 @@ h2 {
     height: 100vh;
     z-index: 999;
     color: #ffff;
-    /* transition: all 0.3s; */
 }
 
 .sidebar-header {

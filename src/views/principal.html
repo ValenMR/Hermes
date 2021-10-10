@@ -9,7 +9,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6bdd16e88d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/principal.css">
-    
 </head>
 
 <body>
@@ -20,18 +19,18 @@
                 <h3>Terminal V.M.V</h3>
             </div>
 
-            <ul class="list-unstyled components link"> <!--crea una lista no ordenada-->
-                <li class="active">
-                    <a href="#"><i class="fas fa-info-circle fa-1x sidebar-icons"></i>We</a>
+            <ul class="list-unstyled components link">
+                <!--crea una lista no ordenada-->
+                <li id="we">
+                    <a href="javascript:showWe();"><i class="fas fa-info-circle fa-1x sidebar-icons"></i>We</a>
                 </li>
-                <li>
-                    <a href="#"><i class="fas fa-car fa-1x sidebar-icons"></i>Vehicle companies</a>
+                <li id="vehicle">
+                    <a href="javascript:showVehicle();"><i class="fas fa-car fa-1x sidebar-icons"></i>Vehicle companies</a>
                 </li>
-                <li>
-                    <a href="#"><i class="fas fa-road fa-1x sidebar-icons"></i>Routes</a>
+                <li id="routes">
+                    <a href="javascript:showRoutes();"><i class="fas fa-road fa-1x sidebar-icons"></i>Routes</a>
 
                 </li>
-
             </ul>
 
             <div class="footer">
@@ -39,39 +38,83 @@
                 <p>Mateo A. Valentina C.</p>
             </div>
         </nav>
-        <div id="view" class="container-view">
-            <div class="background-header">
-                <div class="blurring">
-                   <h2>We</h2>
-                </div>
-            </div>
-            <div class="container-text">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est mollitia, optio possimus saepe voluptas, sapiente voluptate laboriosam eligendi ab perferendis repudiandae! At deleniti nesciunt dignissimos tempora ea nostrum tenetur nihil nemo explicabo, quis possimus placeat, numquam facere non vitae eum doloremque velit natus neque maxime. Quasi rerum eligendi soluta possimus suscipit nihil dolor voluptate optio. Eveniet soluta molestiae, non quas labore ipsa obcaecati minima repudiandae nisi cumque iusto laboriosam sit nostrum animi quidem fuga nihil reiciendis delectus itaque. Voluptas beatae ea odit ipsam dolore, inventore quod, numquam exercitationem neque laboriosam molestias cum consequuntur quidem perspiciatis impedit. Non, laborum nulla.
-                </p>
-            </div>
-            <div class="container-contact d-flex flex-column">
-                <div class="item-center">
-                    <h3>Contact Us</h3>
-                </div>
-                <div class="item-center">
-                    <ul class="list-unstyled"> <!--crea una lista no ordenada-->
-                        <li>
-                            Email: terminalvmv@gmail.com
-                        </li>
-                        <li>
-                            Phone: +57 604 455 35 00
-                        </li>
-                        <li>
-                            Address: Cra 67 #8b-109    
-                        </li>
-        
-                    </ul>
-                </div>
-            </div>
-        </div>
+
+        <div id="view" class="container-view"></div>
     </div>
 
 </body>
+
+<script>
+    function showVehicle() {
+        let view = document.getElementById("view");
+        let row = document.getElementById("vehicle");
+        document.getElementById("we").classList.remove("active");
+        document.getElementById("routes").classList.remove("active");
+
+
+        row.classList.add("active");
+        view.innerHTML = '';
+    }
+
+    function showRoutes() {
+        let view = document.getElementById("view");
+        let row = document.getElementById("routes");
+        document.getElementById("we").classList.remove("active");
+        document.getElementById("vehicle").classList.remove("active");
+
+
+        row.classList.add("active");
+        view.innerHTML = '';
+    }
+
+    function showWe() {
+        let view = document.getElementById("view");
+        let row = document.getElementById("we");
+        document.getElementById("vehicle").classList.remove("active");
+        document.getElementById("routes").classList.remove("active");
+
+
+        row.classList.add("active");
+        view.innerHTML = ' \
+            <div class="background-header"> \
+                <div class="blurring">\
+                    <h2>We</h2> \
+                </div> \
+            </div> \
+            <div class="container-text"> \
+                <p> \
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est mollitia, optio possimus saepe \
+                    voluptas, sapiente voluptate laboriosam eligendi ab perferendis repudiandae! At deleniti nesciunt \
+                    dignissimos tempora ea nostrum tenetur nihil nemo explicabo, quis possimus placeat, numquam facere \
+                    non vitae eum doloremque velit natus neque maxime. Quasi rerum eligendi soluta possimus suscipit \
+                    nihil dolor voluptate optio. Eveniet soluta molestiae, non quas labore ipsa obcaecati minima \
+                    repudiandae nisi cumque iusto laboriosam sit nostrum animi quidem fuga nihil reiciendis delectus \
+                    itaque. Voluptas beatae ea odit ipsam dolore, inventore quod, numquam exercitationem neque \
+                    laboriosam molestias cum consequuntur quidem perspiciatis impedit. Non, laborum nulla. \
+                </p> \
+            </div> \
+            <div class="container-contact d-flex flex-column"> \
+                <div class="item-center"> \
+                    <h3>Contact Us</h3> \
+                </div> \
+                <div class="item-center"> \
+                    <ul class="list-unstyled"> \
+                        <!--crea una lista no ordenada--> \
+                        <li> \
+                            Email: terminalvmv@gmail.com \
+                        </li> \
+                        <li> \
+                            Phone: +57 604 455 35 00 \
+                        </li> \
+                        <li> \
+                            Address: Cra 67 #8b-109 \
+                        </li> \
+                    </ul> \
+                </div> \
+            </div>';
+    }
+
+    showWe();
+</script>
 
 </html>
