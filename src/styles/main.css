@@ -11,3 +11,11 @@ body {
     width: 100%;
     margin: 0;
 }
+
+.blurring {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 0;
+    background-color: rgba(0, 10, 29, 0.7);
+}

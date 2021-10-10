@@ -9,6 +9,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6bdd16e88d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/principal.css">
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                     <a href="javascript:showWe();"><i class="fas fa-info-circle fa-1x sidebar-icons"></i>We</a>
                 </li>
                 <li id="vehicle">
-                    <a href="javascript:showVehicle();"><i class="fas fa-car fa-1x sidebar-icons"></i>Vehicle companies</a>
+                    <a href="javascript:showVehicle();"><i class="fas fa-car fa-1x sidebar-icons"></i>Vehicle Companies</a>
                 </li>
                 <li id="routes">
                     <a href="javascript:showRoutes();"><i class="fas fa-road fa-1x sidebar-icons"></i>Routes</a>
@@ -53,7 +54,12 @@
 
 
         row.classList.add("active");
-        view.innerHTML = '';
+        view.innerHTML = ' \
+            <div class="background-header"> \
+                <div class="blurring">\
+                    <h2>Vehicle Companies</h2> \
+                </div> \
+            </div>';
     }
 
     function showRoutes() {
@@ -64,7 +70,12 @@
 
 
         row.classList.add("active");
-        view.innerHTML = '';
+        view.innerHTML = ' \
+            <div class="background-header"> \
+                <div class="blurring">\
+                    <h2>Routes</h2> \
+                </div> \
+            </div>';
     }
 
     function showWe() {

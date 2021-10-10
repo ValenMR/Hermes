@@ -11,14 +11,6 @@ input {
     background-size: 100% 100%;
 }
 
-.blurring {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    z-index: 0;
-    background-color: rgba(0, 10, 29, 0.7);
-}
-
 .login-card {
     margin-top: 15%;
     color: #ffff;
