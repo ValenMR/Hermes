@@ -85,14 +85,6 @@ h2 {
     height: 100vh !important;
 }
 
-.blurring {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    z-index: 0;
-    background-color: rgba(0, 10, 29, 0.7);
-}
-
 .container-text {
     text-align: justify;
     padding: 50px 100px;
