@@ -70,7 +70,7 @@
             for (let key in vehicleCompanies[i]) {
                 tableBody += "<td>";
                 if (key == "route") {
-                    tableBody += '<ul class="list-unstyled">';
+                    tableBody += '<ul class="remove-padding list-unstyled">';
                     vehicleCompanies[i][key].forEach(element => {
                         tableBody += "<li>" + element + "</li>";
                     });
