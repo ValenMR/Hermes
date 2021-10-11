@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/6bdd16e88d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/principal.css">
     <link rel="stylesheet" href="../styles/main.css">
+    <script src="../api/vehicle.js"></script>
 </head>
 
 <body>
@@ -26,7 +27,8 @@
                     <a href="javascript:showWe();"><i class="fas fa-info-circle fa-1x sidebar-icons"></i>We</a>
                 </li>
                 <li id="vehicle">
-                    <a href="javascript:showVehicle();"><i class="fas fa-car fa-1x sidebar-icons"></i>Vehicle Companies</a>
+                    <a href="javascript:showVehicle();"><i class="fas fa-car fa-1x sidebar-icons"></i>Vehicle
+                        Companies</a>
                 </li>
                 <li id="routes">
                     <a href="javascript:showRoutes();"><i class="fas fa-road fa-1x sidebar-icons"></i>Routes</a>
@@ -46,20 +48,110 @@
 </body>
 
 <script>
+    function changeTable(page) {
+        let vehicleCompanies = getVehicleCompanies("", "", "");
+        let tableBody = createTableVehicleCompanies(vehicleCompanies, page);
+
+        let table = document.getElementById("table");
+        table.innerHTML = tableBody;
+
+        document.getElementsByClassName("pagination")[0]
+                .getElementsByClassName("active")[0]
+                .classList.remove("active");
+        document.getElementById(page.toString()).classList.add("active");
+    }
+
+    function createTableVehicleCompanies(vehicleCompanies, page) {
+        let tableBody = "";
+
+        let items = page * 4;
+        for (let i = items - 4; i < items; i++) {
+            tableBody += "<tr>";
+            for (let key in vehicleCompanies[i]) {
+                tableBody += "<td>";
+                if (key == "route") {
+                    tableBody += '<ul class="list-unstyled">';
+                    vehicleCompanies[i][key].forEach(element => {
+                        tableBody += "<li>" + element + "</li>";
+                    });
+                    tableBody += "</ul>";
+                } else {
+                    tableBody += vehicleCompanies[i][key];
+                }
+                tableBody += "</td>";
+            }
+        }
+        return tableBody;
+    }
+
+    function getPaginationNumbers(length, page) {
+        let pagination = "";
+        let i;
+        let number;
+        for (i = 4; i <= length; i += 4) {
+            number = i / 4;
+            if (page == i / 4) {
+                pagination += `<li id="${number}" class="page-item active"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+            } else {
+                pagination += `<li id="${number}" class="page-item"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+            }
+        }
+
+        if (length % 4 != 0) {
+            number = i / 4;
+            if (page == number) {
+                pagination += `<li id="${number}" class="page-item active"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+            } else {
+                pagination += `<li id="${number}" class="page-item"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+            }
+        }
+        return pagination;
+    }
+
     function showVehicle() {
         let view = document.getElementById("view");
         let row = document.getElementById("vehicle");
         document.getElementById("we").classList.remove("active");
         document.getElementById("routes").classList.remove("active");
 
+        let vehicleCompanies = getVehicleCompanies("", "", "");
+        let paginationNumbers = getPaginationNumbers(vehicleCompanies.length, 1);
+        let tableBody = createTableVehicleCompanies(vehicleCompanies, 1);
 
         row.classList.add("active");
-        view.innerHTML = ' \
+        view.innerHTML = ` \
             <div class="background-header"> \
                 <div class="blurring">\
                     <h2>Vehicle Companies</h2> \
                 </div> \
-            </div>';
+            </div> \
+            <div class="d-flex justify-content-between container-table mt-3"> \
+                <input type="text" class="form-control bg-secondary text-white" placeholder="Drive Name" aria-label="Drive Name"> \
+                <input type="text" class="form-control bg-secondary text-white" placeholder="Origin" aria-label="Origin"> \
+                <input type="text" class="form-control bg-secondary text-white" placeholder="Destination" aria-label="Destination"> \
+                <button type="button" class="btn btn-outline-dark">Search</button> \
+            </div> \
+            <div class="table-responsive-md container-table shadow-lg bg-body rounded"> \
+                <table class="table table-dark table-hover table-bordered text-center text-table"> \
+                    <thead> \
+                        <tr> \
+                            <th scope="col">Name</th> \
+                            <th scope="col">Drive Full name</th> \
+                            <th scope="col">Routes</th> \
+                        </tr> \
+                    </thead> \
+                    <tbody id="table"> \
+                        ${tableBody} \
+                    </tbody> \
+                </table> \
+            </div> \
+            <div class="container-table"> \
+                <nav aria-label="Page navigation"> \
+                    <ul class="pagination justify-content-center"> \
+                        ${paginationNumbers} \
+                    </ul> \
+                </nav> \
+            </div>`;
     }
 
     function showRoutes() {
@@ -67,7 +159,6 @@
         let row = document.getElementById("routes");
         document.getElementById("we").classList.remove("active");
         document.getElementById("vehicle").classList.remove("active");
-
 
         row.classList.add("active");
         view.innerHTML = ' \

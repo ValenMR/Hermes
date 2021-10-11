@@ -9,6 +9,14 @@ h2 {
     font-size: 50px;
 }
 
+td {
+    vertical-align: middle !important;
+}
+
+::placeholder {
+    color: #ffff !important; /* color para ele placeholder, es una metaclase (::) */
+}
+
 .wrapper {
     display: flex;
     width: 100%;
@@ -99,4 +107,34 @@ h2 {
 .item-center {
     margin: auto;
     padding-top: 10px;
+}
+
+.container-table {
+    max-width: 60%;
+    margin: 20px auto;
+}
+
+.text-table {
+    font-size: 18px;
+}
+
+.container-table input {
+    margin: 0px 10px;
+}
+
+.container-table button {
+    margin: 0px 10px;
+}
+
+.pagination li.active a {
+    background-color: rgb(52, 58, 64) !important;
+    color: #ffff;
+}
+
+.pagination li a {
+    color: rgb(52, 58, 64);
+}
+
+.pagination li a:hover {
+    color: rgb(52, 58, 64);
 }
