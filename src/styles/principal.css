@@ -13,6 +13,12 @@ td {
     vertical-align: middle !important;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
 ::placeholder {
     color: #ffff !important; /* color para ele placeholder, es una metaclase (::) */
 }
@@ -131,10 +137,7 @@ td {
     color: #ffff;
 }
 
-.pagination li a {
-    color: rgb(52, 58, 64);
-}
-
+.pagination li a,
 .pagination li a:hover {
     color: rgb(52, 58, 64);
 }

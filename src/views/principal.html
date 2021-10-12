@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../styles/principal.css">
     <link rel="stylesheet" href="../styles/main.css">
     <script src="../api/vehicle.js"></script>
+    <script src="../api/route.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,6 @@
                 </li>
                 <li id="routes">
                     <a href="javascript:showRoutes();"><i class="fas fa-road fa-1x sidebar-icons"></i>Routes</a>
-
                 </li>
             </ul>
 
@@ -48,10 +48,27 @@
 </body>
 
 <script>
-    function changeTable(page) {
+    function getTableRoutes(page) {
+        let routes = getRoutes("", "", "");
+        let tableBody = createTableRoutes(routes, page);
+        return tableBody;
+    }
+
+    function getTableVehicleCompanies(page) {
         let vehicleCompanies = getVehicleCompanies("", "", "");
         let tableBody = createTableVehicleCompanies(vehicleCompanies, page);
+        return tableBody;
+    }
 
+    function changeTable(page, view) {
+        let tableBody;
+        console.log(view);
+        if (view === "routes") {
+            tableBody = getTableRoutes(page);
+        } else {
+            tableBody = getTableVehicleCompanies(page);
+        }
+        
         let table = document.getElementById("table");
         table.innerHTML = tableBody;
 
@@ -59,6 +76,19 @@
                 .getElementsByClassName("active")[0]
                 .classList.remove("active");
         document.getElementById(page.toString()).classList.add("active");
+    }
+
+    function createTableRoutes(routes, page) {
+        let tableBody = "";
+
+        let items = page * 7;
+        for (let i = items - 7; i < items; i++) {
+            tableBody += "<tr>";
+            for (let key in routes[i]) {
+                tableBody += `<td>${routes[i][key]}</td>`;
+            }
+        }
+        return tableBody;
     }
 
     function createTableVehicleCompanies(vehicleCompanies, page) {
@@ -84,25 +114,26 @@
         return tableBody;
     }
 
-    function getPaginationNumbers(length, page) {
+    function getPaginationNumbers(length, page, viewName, maxRow) {
         let pagination = "";
         let i;
         let number;
-        for (i = 4; i <= length; i += 4) {
-            number = i / 4;
-            if (page == i / 4) {
-                pagination += `<li id="${number}" class="page-item active"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+        console.log(viewName);
+        for (i = maxRow; i <= length; i += maxRow) {
+            number = i / maxRow;
+            if (page == i / maxRow) {
+                pagination += `<li id="${number}" class="page-item active"><a class="page-link" href="javascript:changeTable(${number}, '${viewName}')">${number}</a></li>`;
             } else {
-                pagination += `<li id="${number}" class="page-item"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+                pagination += `<li id="${number}" class="page-item"><a class="page-link" href="javascript:changeTable(${number}, '${viewName}')">${number}</a></li>`;
             }
         }
 
-        if (length % 4 != 0) {
-            number = i / 4;
+        if (length % maxRow != 0) {
+            number = i / maxRow;
             if (page == number) {
-                pagination += `<li id="${number}" class="page-item active"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+                pagination += `<li id="${number}" class="page-item active"><a class="page-link" href="javascript:changeTable(${number}, '${viewName}')">${number}</a></li>`;
             } else {
-                pagination += `<li id="${number}" class="page-item"><a class="page-link" href="javascript:changeTable(${number})">${number}</a></li>`;
+                pagination += `<li id="${number}" class="page-item"><a class="page-link" href="javascript:changeTable(${number}, '${viewName}')">${number}</a></li>`;
             }
         }
         return pagination;
@@ -115,7 +146,7 @@
         document.getElementById("routes").classList.remove("active");
 
         let vehicleCompanies = getVehicleCompanies("", "", "");
-        let paginationNumbers = getPaginationNumbers(vehicleCompanies.length, 1);
+        let paginationNumbers = getPaginationNumbers(vehicleCompanies.length, 1, "vehicle", 4);
         let tableBody = createTableVehicleCompanies(vehicleCompanies, 1);
 
         row.classList.add("active");
@@ -136,7 +167,7 @@
                     <thead> \
                         <tr> \
                             <th scope="col">Name</th> \
-                            <th scope="col">Drive Full name</th> \
+                            <th scope="col">Driver Full name</th> \
                             <th scope="col">Routes</th> \
                         </tr> \
                     </thead> \
@@ -159,14 +190,52 @@
         let row = document.getElementById("routes");
         document.getElementById("we").classList.remove("active");
         document.getElementById("vehicle").classList.remove("active");
+        
+        let routes = getRoutes("", "", "");
+        let paginationNumbers = getPaginationNumbers(routes.length, 1, "routes", 7);
+        let tableBody = createTableRoutes(routes, 1);
 
         row.classList.add("active");
-        view.innerHTML = ' \
+        view.innerHTML = ` \
             <div class="background-header"> \
                 <div class="blurring">\
                     <h2>Routes</h2> \
                 </div> \
-            </div>';
+            </div> \
+            <div class="d-flex justify-content-between container-table mt-3"> \
+                <input type="number" min="0" class="form-control bg-secondary text-white" placeholder="Price" aria-label="Price"> \
+                <input type="text" class="form-control bg-secondary text-white" placeholder="Origin" aria-label="Origin"> \
+                <input type="text" class="form-control bg-secondary text-white" placeholder="Destination" aria-label="Destination"> \
+                <button type="button" class="btn btn-outline-dark">Search</button> \
+            </div> \
+            <div class="table-responsive-md container-table shadow-lg bg-body rounded"> \
+                <table class="table table-dark table-hover table-bordered text-center text-table"> \
+                    <thead> \
+                        <tr> \
+                            <th scope="col">Company</th> \
+                            <th scope="col">Driver</th> \
+                            <th scope="col">Origin</th> \
+                            <th scope="col">Destination</th> \
+                            <th scope="col">Distance (km)</th> \
+                            <th scope="col">Price</th> \
+                        </tr> \
+                    </thead> \
+                    <tbody id="table"> \
+                        ${tableBody} \
+                    </tbody> \
+                </table> \
+            </div> \
+            <div class="container-table"> \
+                <nav aria-label="Page navigation"> \
+                    <ul class="pagination justify-content-center"> \
+                        ${paginationNumbers} \
+                    </ul> \
+                </nav> \
+            </div> \
+            <div class="container-table d-flex justify-content-between"> \
+                <button type="button" class="btn btn-outline-dark">Reserve</button> \
+                <button type="button" class="btn btn-outline-dark">Search</button> \
+            </div>`;
     }
 
     function showWe() {
