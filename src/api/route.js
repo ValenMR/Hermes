@@ -1,94 +1,11 @@
-function getRoutes(price, origin, destination) {
-    // peticion al back
-    routes = [
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena1",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena1",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena1",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena1",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena1",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena1",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        },
-        {
-            "Company": "UdeA",
-            "Driver": "Valentina Cadena100",
-            "Origin": "Medellín",
-            "Destination": "Sopetrán",
-            "Distance": 50.2,
-            "Price": 50000
-        }        
-    ];
+async function getRoutes(price, origin, destination) {
+    let url = `http://localhost:8000/api/routes/relations?price=${price}&origin=${origin}&destination=${destination}`;
+
+    let routes = await fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem("routes", JSON.stringify(data));
+        return data
+    });
     return routes
 }

@@ -12,6 +12,7 @@
     <!--para usar los estilos con permiso¿?¡'???-->
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="../styles/main.css">
+    <script src="../api/user.js"></script>
 </head>
 
 <body class="login">
@@ -50,9 +51,18 @@
 </body>
 
 <script>
-    function login() {
+    async function login() {
         let topDocument = window.top.document;
         let body = topDocument.getElementById("body");
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        if (!username || !password) {
+            return
+        }
+
+        await create_user(username, password);
         body.innerHTML = '<object type="text/html" class="view" data="./views/principal.html" ></object>';
     }
 </script>
