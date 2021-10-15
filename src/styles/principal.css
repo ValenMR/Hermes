@@ -101,7 +101,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .container-text {
     text-align: justify;
-    padding: 50px 100px;
+    margin: 5% 25%;
     font-size: 20px;
 }
 

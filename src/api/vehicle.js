@@ -18,7 +18,6 @@ async function getVehicleCompanies(driveName, origin, destination) {
 
     vehicleCompanies = groupByDriverAndCompany(vehicleCompanies);
     
-    console.log(vehicleCompanies);
     return vehicleCompanies;
 }
 
